@@ -51,16 +51,10 @@ Scenario Outline: Add two numbers
     |    1		  |   0			 |   1		  |
     |    0		  |   1			 |   1		  |
     |    9		  |   1			 |   10       |
-    |    50		  |   50		 |   100	  |
-	|    1000	  |   99000		 |   100000   |
-	|    1		  |   999999	 |   1000000  |
 	|    0.1	  |   0			 |   0.1	  |
-	|    0.5	  |   0.5		 |   1		  |
-	|    0.75	  |   0.25		 |   1		  |
-	|    0.333	  |   0.25		 |   0.583	  |
+	|    0.5	  |   5			 |   5.5	  |
+	|    75		  |   0.25		 |   75.25	  |
 	|    0.1000	  |   1.99		 |   2.09	  |
-	|    2.77777  |   10.33		 |   13,10777 |
-	|    0.9	  |   0.1		 |   1		  |
 
 
 @multiplyNum
@@ -77,15 +71,10 @@ Scenario Outline: multiply two numbers
     | 0           | 1            | 0          |
     | 5           | 1            | 5          |
     | 7           | 2            | 14         |
-    | 400         | 3            | 1200       |
-    | 4           | 90000        | 360000     |
-    | 600000      | 5            | 3000000    |
-    | 0.5         | 0.5          | 0.25       |
-    | 0.75        | 0.25         | 0.1875     |
-    | 0.333       | 0.25         | 0.08325    |
+    | 0.5         | 5	         | 2.5        |
+    | 3           | 0.25         | 0.75       |
     | 0.1000      | 1.99         | 0.0199     |
     | 2.77777     | 10.33        | 28.6943641 |
-    | 0.9         | 0.1          | 0.09       |
 
 
 
@@ -98,12 +87,13 @@ Scenario Outline: Substract two numbers
 	When I tap on equal button
 	Then I see the <result> of operation at the input field
 	Examples: 
-	| first | second | result | 
+	| first | second | result |
 	| 6     | 3      | 3      |
 	| 5     | 7      | -2     |
 	| 4.5   | 2      | 2.5    |
 	| 8     | 1.9    | 6.1    |
 	| 0     | 5      | -5     |
+	| 4     | 0      | 4      |
 
 @division
 Scenario Outline: Division two numbers
@@ -120,6 +110,7 @@ Scenario Outline: Division two numbers
 	| 2     | 3      | 0.666666666666667 |
 	| 0     | 15     | 0                 |
 	| 5     | 2.5    | 2                 |
+	| 12.5  | 2      | 6.25              |
 
 @negative
 Scenario: Correct reacrion on division on zero
