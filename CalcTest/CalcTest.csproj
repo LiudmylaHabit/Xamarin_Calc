@@ -130,13 +130,16 @@
   <ItemGroup>
     <Compile Include="AppInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\CalculatorTestsSteps.cs" />
     <Compile Include="TestCalculator.cs" />
     <Compile Include="Views\CalcView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="FeatureFiles\CalculatorTests.feature" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

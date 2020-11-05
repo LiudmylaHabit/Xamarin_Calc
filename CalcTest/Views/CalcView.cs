@@ -171,6 +171,9 @@ namespace CalcTest.Views
                 case "/":
                     App.Tap(btnDivide);
                     return this;
+                case ".":
+                    App.Tap(btnComma);
+                    return this;
                 default:
                     return this;
             }
