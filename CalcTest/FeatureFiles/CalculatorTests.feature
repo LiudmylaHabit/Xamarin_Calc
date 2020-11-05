@@ -32,10 +32,62 @@
 	So that the space-time continuum won’t collapse if I press the “Calculate” button
 	
 	As a user 
-	I want a calculator to have a “Clear” button, so that I don't have to clear all fields myself
+	I want a calculator to have delete button
+	In order to clear previous result
 
 	Background: 
-	Given calculator app is initialized
+	Given calculator app is initialized	
+
+@addNum
+Scenario Outline: Add two numbers
+	Given the first number is <firstNumber>
+	When I select a sign like plus
+	When the second number is <secondNumber>
+	And I tap on equal button
+	Then the result should be <result>
+	Examples:
+    | firstNumber | secondNumber | result	  |
+    |    0		  |   0			 |   0		  |
+    |    1		  |   0			 |   1		  |
+    |    0		  |   1			 |   1		  |
+    |    9		  |   1			 |   10       |
+    |    50		  |   50		 |   100	  |
+	|    1000	  |   99000		 |   100000   |
+	|    1		  |   999999	 |   1000000  |
+	|    0.1	  |   0			 |   0.1	  |
+	|    0.5	  |   0.5		 |   1		  |
+	|    0.75	  |   0.25		 |   1		  |
+	|    0.333	  |   0.25		 |   0.583	  |
+	|    0.1000	  |   1.99		 |   2.09	  |
+	|    2.77777  |   10.33		 |   13,10777 |
+	|    0.9	  |   0.1		 |   1		  |
+
+
+@multiplyNum
+Scenario Outline: multiply two numbers
+	Given the first number is <firstNumber>
+	When I select a sign like multiply
+	When the second number is <secondNumber>
+	And I tap on equal button
+	Then the result should be <result>
+	Examples:
+    | firstNumber | secondNumber | result     |
+    | 0           | 0            | 0          |
+    | 1           | 0            | 0          |
+    | 0           | 1            | 0          |
+    | 5           | 1            | 5          |
+    | 7           | 2            | 14         |
+    | 400         | 3            | 1200       |
+    | 4           | 90000        | 360000     |
+    | 600000      | 5            | 3000000    |
+    | 0.5         | 0.5          | 0.25       |
+    | 0.75        | 0.25         | 0.1875     |
+    | 0.333       | 0.25         | 0.08325    |
+    | 0.1000      | 1.99         | 0.0199     |
+    | 2.77777     | 10.33        | 28.6943641 |
+    | 0.9         | 0.1          | 0.09       |
+
+
 
 @substract
 Scenario Outline: Substract two numbers
@@ -69,7 +121,7 @@ Scenario Outline: Division two numbers
 	| 0     | 15     | 0                 |
 	| 5     | 2.5    | 2                 |
 
-	@negative
+@negative
 Scenario: Correct reacrion on division on zero
 	When The 45 number typed at the calculator
 	When I tap on division button
@@ -78,3 +130,16 @@ Scenario: Correct reacrion on division on zero
 	When I tap on equal button
 	Then I see informational error message
 
+Scenario Outline: Zero as first operand after tap on operation button on initializing
+	When I tap on <operation> button
+	Then I see 0 and <operation> sign 
+	When The 5 number typed at the calculator
+	Then I see 0 and 5 numbers separated by <operation> sign
+	When I tap on equal button
+	Then I see the <result> of operation at the input field
+	Examples: 
+	| operation | result |
+	| '+'         | 5      |
+	| '-'         | -5     |
+	| '*'         | 0      |
+	| '/'         | 0      |

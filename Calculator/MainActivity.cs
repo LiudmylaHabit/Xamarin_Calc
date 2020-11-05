@@ -38,8 +38,8 @@ namespace Calculator
         public void ButtonClick(View view)
         {
             Button button = (Button)view;
-            if ("0123456789,".Contains(button.Text)) AddButtonValues(button.Text);
-            else if ("+-*/".Contains(button.Text)) AddOperator(button.Text);
+            if ("0123456789.".Contains(button.Text)) AddButtonValues(button.Text);
+            else if ("+-*/".Contains(button.Text)) AddOperator(button.Text);            
             else if ("=" == button.Text) Calculate();
             else Clear();
         }
@@ -47,9 +47,11 @@ namespace Calculator
         private void AddButtonValues(string buttonText)
         {
             int index = @operator == null ? 0 : 1;
-            if (buttonText == "," && numbers[index].Contains(",")) return;
-            if (numbers[0].StartsWith("0")) numbers[0] = numbers[0].Substring(1); // remove 0 from the start of number input
+            if (buttonText == "." && numbers[index].Contains(".")) return;
             numbers[index] += buttonText;
+            if ((numbers[0].StartsWith("0")) && (numbers[0].Length > 1 ) 
+                && (numbers[0][1]!= '.'))
+                numbers[0] = numbers[0].Substring(1); // remove 0 from the start of number input
             UpdateCalculatorText();
         }
         private void AddOperator(string buttonText)

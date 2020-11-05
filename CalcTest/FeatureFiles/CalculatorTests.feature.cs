@@ -68,7 +68,8 @@ namespace CalcTest.FeatureFiles
 	So that the space-time continuum won’t collapse if I press the “Calculate” button
 	
 	As a user 
-	I want a calculator to have a “Clear” button, so that I don't have to clear all fields myself", ProgrammingLanguage.CSharp, ((string[])(null)));
+	I want a calculator to have delete button
+	In order to clear previous result", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -108,11 +109,157 @@ namespace CalcTest.FeatureFiles
         
         public virtual void FeatureBackground()
         {
-#line 37
- #line hidden
 #line 38
+ #line hidden
+#line 39
  testRunner.Given("calculator app is initialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.CategoryAttribute("addNum")]
+        [NUnit.Framework.TestCaseAttribute("0", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "0", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("0", "1", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("9", "1", "10", null)]
+        [NUnit.Framework.TestCaseAttribute("50", "50", "100", null)]
+        [NUnit.Framework.TestCaseAttribute("1000", "99000", "100000", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "999999", "1000000", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1", "0", "0.1", null)]
+        [NUnit.Framework.TestCaseAttribute("0.5", "0.5", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("0.75", "0.25", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("0.333", "0.25", "0.583", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1000", "1.99", "2.09", null)]
+        [NUnit.Framework.TestCaseAttribute("2.77777", "10.33", "13,10777", null)]
+        [NUnit.Framework.TestCaseAttribute("0.9", "0.1", "1", null)]
+        public virtual void AddTwoNumbers(string firstNumber, string secondNumber, string result, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "addNum"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("firstNumber", firstNumber);
+            argumentsOfScenario.Add("secondNumber", secondNumber);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario);
+#line 42
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 38
+ this.FeatureBackground();
+#line hidden
+#line 43
+ testRunner.Given(string.Format("the first number is {0}", firstNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 44
+ testRunner.When("I select a sign like plus", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 45
+ testRunner.When(string.Format("the second number is {0}", secondNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
+ testRunner.And("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 47
+ testRunner.Then(string.Format("the result should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("multiply two numbers")]
+        [NUnit.Framework.CategoryAttribute("multiplyNum")]
+        [NUnit.Framework.TestCaseAttribute("0", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "0", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("0", "1", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("5", "1", "5", null)]
+        [NUnit.Framework.TestCaseAttribute("7", "2", "14", null)]
+        [NUnit.Framework.TestCaseAttribute("400", "3", "1200", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "90000", "360000", null)]
+        [NUnit.Framework.TestCaseAttribute("600000", "5", "3000000", null)]
+        [NUnit.Framework.TestCaseAttribute("0.5", "0.5", "0.25", null)]
+        [NUnit.Framework.TestCaseAttribute("0.75", "0.25", "0.1875", null)]
+        [NUnit.Framework.TestCaseAttribute("0.333", "0.25", "0.08325", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1000", "1.99", "0.0199", null)]
+        [NUnit.Framework.TestCaseAttribute("2.77777", "10.33", "28.6943641", null)]
+        [NUnit.Framework.TestCaseAttribute("0.9", "0.1", "0.09", null)]
+        public virtual void MultiplyTwoNumbers(string firstNumber, string secondNumber, string result, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "multiplyNum"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("firstNumber", firstNumber);
+            argumentsOfScenario.Add("secondNumber", secondNumber);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("multiply two numbers", null, tagsOfScenario, argumentsOfScenario);
+#line 67
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 38
+ this.FeatureBackground();
+#line hidden
+#line 68
+ testRunner.Given(string.Format("the first number is {0}", firstNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 69
+ testRunner.When("I select a sign like multiply", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 70
+ testRunner.When(string.Format("the second number is {0}", secondNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 71
+ testRunner.And("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 72
+ testRunner.Then(string.Format("the result should be {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -137,7 +284,7 @@ namespace CalcTest.FeatureFiles
             argumentsOfScenario.Add("second", second);
             argumentsOfScenario.Add("result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Substract two numbers", null, tagsOfScenario, argumentsOfScenario);
-#line 41
+#line 93
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -157,25 +304,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 37
+#line 38
  this.FeatureBackground();
 #line hidden
-#line 42
+#line 94
  testRunner.When(string.Format("The {0} number typed at the calculator", first), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 95
  testRunner.When("I tap on substract button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 96
  testRunner.When(string.Format("The {0} number typed at the calculator", second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 45
+#line 97
  testRunner.Then(string.Format("I see {0} and {1} numbers separated by substract operand", first, second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 46
+#line 98
  testRunner.When("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 47
+#line 99
  testRunner.Then(string.Format("I see the {0} of operation at the input field", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -204,7 +351,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("second", second);
             argumentsOfScenario.Add("result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Division two numbers", null, tagsOfScenario, argumentsOfScenario);
-#line 57
+#line 109
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -224,25 +371,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 37
+#line 38
  this.FeatureBackground();
 #line hidden
-#line 58
+#line 110
  testRunner.When(string.Format("The {0} number typed at the calculator", first), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 59
+#line 111
  testRunner.When("I tap on division button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 60
+#line 112
  testRunner.When(string.Format("The {0} number typed at the calculator", second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 61
+#line 113
  testRunner.Then(string.Format("I see {0} and {1} numbers separated by division operand", first, second), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 62
+#line 114
  testRunner.When("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 63
+#line 115
  testRunner.Then(string.Format("I see the {0} of operation at the input field", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -258,7 +405,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Correct reacrion on division on zero", null, tagsOfScenario, argumentsOfScenario);
-#line 73
+#line 125
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -278,26 +425,84 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 37
+#line 38
  this.FeatureBackground();
 #line hidden
-#line 74
+#line 126
  testRunner.When("The 45 number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 75
+#line 127
  testRunner.When("I tap on division button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 76
+#line 128
  testRunner.When("The 0 number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 77
+#line 129
  testRunner.Then("I see 45 and 0 numbers separated by division operand", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 78
+#line 130
  testRunner.When("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 79
+#line 131
  testRunner.Then("I see informational error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Zero as first operand after tap on operation button on initializing")]
+        [NUnit.Framework.TestCaseAttribute("\'+\'", "5", null)]
+        [NUnit.Framework.TestCaseAttribute("\'-\'", "-5", null)]
+        [NUnit.Framework.TestCaseAttribute("\'*\'", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("\'/\'", "0", null)]
+        public virtual void ZeroAsFirstOperandAfterTapOnOperationButtonOnInitializing(string operation, string result, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("operation", operation);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Zero as first operand after tap on operation button on initializing", null, tagsOfScenario, argumentsOfScenario);
+#line 133
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 38
+ this.FeatureBackground();
+#line hidden
+#line 134
+ testRunner.When(string.Format("I tap on {0} button", operation), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 135
+ testRunner.Then(string.Format("I see 0 and {0} sign", operation), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 136
+ testRunner.When("The 5 number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 137
+ testRunner.Then(string.Format("I see 0 and 5 numbers separated by {0} sign", operation), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 138
+ testRunner.When("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 139
+ testRunner.Then(string.Format("I see the {0} of operation at the input field", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
