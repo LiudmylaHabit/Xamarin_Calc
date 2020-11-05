@@ -71,10 +71,10 @@ Scenario Outline: Division two numbers
 
 	@negative
 Scenario: Correct reacrion on division on zero
-	When The "3" number typed at the calculator
+	When The 45 number typed at the calculator
 	When I tap on division button
-	When The "0" number typed at the calculator
-	Then I see <first> and <second> numbers separated by division operand	
+	When The 0 number typed at the calculator
+	Then I see 45 and 0 numbers separated by division operand	
 	When I tap on equal button
 	Then I see informational error message
 

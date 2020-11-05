@@ -282,16 +282,16 @@ this.ScenarioInitialize(scenarioInfo);
  this.FeatureBackground();
 #line hidden
 #line 74
- testRunner.When("The \"3\" number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("The 45 number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 75
  testRunner.When("I tap on division button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 76
- testRunner.When("The \"0\" number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("The 0 number typed at the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 77
- testRunner.Then("I see <first> and <second> numbers separated by division operand", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I see 45 and 0 numbers separated by division operand", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 78
  testRunner.When("I tap on equal button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
