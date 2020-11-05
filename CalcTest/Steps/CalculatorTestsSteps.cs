@@ -37,15 +37,12 @@ namespace CalcTest.Steps
         [Then(@"I see (.*) number and substract operand at the input field")]
         public void ThenISeeNumberAndSubstractOperandAtTheInputField(double operand)
         {
-           // string newOperand = operand.ToString().Replace(".", ",");
             Assert.AreEqual(operand + "-", calc.CalcViewText);
         }
 
         [Then(@"I see (.*) and (.*) numbers separated by substract operand")]
         public void ThenISeeAndNumbersSeparatedBySubstractOperand(double first, double second)
         {
-            //string firstNumber = first.ToString().Replace(".", ",");
-            //string secondNumber = second.ToString().Replace(".", ",");
             string expected = first + "-" + second;
             Assert.AreEqual(expected, calc.CalcViewText);
         }
@@ -72,8 +69,6 @@ namespace CalcTest.Steps
         [Then(@"I see (.*) and (.*) numbers separated by division operand")]
         public void ThenISeeAndNumbersSeparatedByDivisionOperand(double first, double second)
         {
-            //string firstNumber = first.ToString().Replace(".", ",");
-            //string secondNumber = second.ToString().Replace(".", ",");
             string expected = first + "/" + second;
             Assert.AreEqual(expected, calc.CalcViewText);
         }

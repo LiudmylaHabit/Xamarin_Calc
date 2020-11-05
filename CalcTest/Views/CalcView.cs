@@ -156,9 +156,6 @@ namespace CalcTest.Views
                 case "0":
                     App.Tap(btnZero);
                     return this;
-                //case ",":
-                //    App.Tap(btnComma);
-                //    return this;
                 case "+":
                     App.Tap(btnPlus);
                     return this;
