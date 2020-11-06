@@ -193,7 +193,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("7", "2", "14", null)]
         [NUnit.Framework.TestCaseAttribute("0.5", "5", "2.5", null)]
         [NUnit.Framework.TestCaseAttribute("3", "0.25", "0.75", null)]
-        [NUnit.Framework.TestCaseAttribute("0.1000", "1.99", "0.0199", null)]
+        [NUnit.Framework.TestCaseAttribute("0.1000", "1.99", "0.199", null)]
         [NUnit.Framework.TestCaseAttribute("2.77777", "10.33", "28.6943641", null)]
         public virtual void MultiplyTwoNumbers(string firstNumber, string secondNumber, string result, string[] exampleTags)
         {
