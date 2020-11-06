@@ -94,21 +94,21 @@ namespace Calculator
             }
             if (!isValid)
             {
-                _numbers[1] = "Wrong input!";
-                _numbers[0] = null;
+                _numbers[0] = "Wrong input!";
+                _numbers[1] = null;
             }
             else if (result != null)
             {
-                _numbers[1] = result.ToString().Trim();
-                _numbers[0] = null;
+                _numbers[0] = result.ToString().Trim();
+                _numbers[1] = null;
             }
             @operator = newOperator;
             UpdateCalculatorText();
         }
         private void Clear()
         {
-            _numbers[1] = null;
             _numbers[0] = "0";
+            _numbers[1] = null;
             @operator = null;
             UpdateCalculatorText();
         }
