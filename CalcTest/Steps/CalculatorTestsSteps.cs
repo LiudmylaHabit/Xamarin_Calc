@@ -197,6 +197,12 @@ namespace CalcTest.Steps
             Assert.AreEqual(operandForMultiply, calc.CalcViewText);
         }
 
+        // ZERO
+        [When(@"I tap on dot button")]
+        public void WhenITapOnDotButton()
+        {
+            calc.TapOnComma();
+        }
 
         public void TapNumber(string operand)
         {

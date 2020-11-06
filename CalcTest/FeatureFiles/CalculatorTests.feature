@@ -113,24 +113,39 @@ Scenario Outline: Division two numbers
 	| 12.5  | 2      | 6.25              |
 
 @negative
-Scenario: Correct reacrion on division on zero
+Scenario Outline: Correct reacrion on division on zero
 	When The 45 number typed at the calculator
 	When I tap on division button
-	When The 0 number typed at the calculator
+	When The <zero> number typed at the calculator
 	Then I see 45 and 0 numbers separated by division operand	
 	When I tap on equal button
 	Then I see informational error message
+	Examples: 
+	| zero |
+	| 0    |
+	| 0.0  |
 
 Scenario Outline: Zero as first operand after tap on operation button on initializing
 	When I tap on <operation> button
 	Then I see 0 and <operation> sign 
-	When The 5 number typed at the calculator
+	When The 5 number typed at the calculator 
 	Then I see 0 and 5 numbers separated by <operation> sign
 	When I tap on equal button
 	Then I see the <result> of operation at the input field
 	Examples: 
 	| operation | result |
-	| '+'         | 5      |
-	| '-'         | -5     |
-	| '*'         | 0      |
-	| '/'         | 0      |
+	| '+'       | 5      |
+	| '-'       | -5     |
+	| '*'       | 0      |
+	| '/'       | 0      |
+
+Scenario: Starting second operand from dot 
+	When The 45 number typed at the calculator
+	When I tap on division button
+	When I tap on dot button
+	Then I see the "0." of operation at the input field
+
+Scenario: Using fractional number without fractional part 
+	When I tap on dot button
+	Then I see the 0. of operation at the input field
+	Then I see the 0 of operation at the input field
