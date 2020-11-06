@@ -14,8 +14,8 @@ namespace Calculator
     [Activity(Label = "@string/app_name", Theme = "@android:style/Theme.DeviceDefault.NoActionBar", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        private TextView calcText;
-        private string[] numbers = new string[2];
+        private TextView _calcText;
+        private string[] _numbers = new string[2];
         private string @operator;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -23,9 +23,9 @@ namespace Calculator
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-           
-            calcText = FindViewById<TextView>(Resource.Id.input);
-            numbers[0] = "0";
+
+            _calcText = FindViewById<TextView>(Resource.Id.input);
+            _numbers[0] = "0";
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -39,24 +39,30 @@ namespace Calculator
         {
             Button button = (Button)view;
             if ("0123456789.".Contains(button.Text)) AddButtonValues(button.Text);
-            else if ("+-*/".Contains(button.Text)) AddOperator(button.Text);            
+            else if ("+-*/".Contains(button.Text)) AddOperator(button.Text);
             else if ("=" == button.Text) Calculate();
             else Clear();
         }
 
         private void AddButtonValues(string buttonText)
         {
+            if (_calcText.Text == "Wrong input!")
+            {
+                Clear();
+            }
+
             int index = @operator == null ? 0 : 1;
-            if (buttonText == "." && numbers[index].Contains(".")) return;
-            numbers[index] += buttonText;
-            if ((numbers[0].StartsWith("0")) && (numbers[0].Length > 1 ) 
-                && (numbers[0][1]!= '.'))
-                numbers[0] = numbers[0].Substring(1); // remove 0 from the start of number input
+            if (buttonText == "." && _numbers[index].Contains(".")) return;
+            _numbers[index] += buttonText;
+            if ((_numbers[0].StartsWith("0")) && (_numbers[0].Length > 1)
+                && (_numbers[0][1] != '.'))
+                _numbers[0] = _numbers[0].Substring(1); // remove 0 from the start of number input
             UpdateCalculatorText();
+
         }
         private void AddOperator(string buttonText)
         {
-            if(numbers[1] != null)
+            if (_numbers[1] != null)
             {
                 Calculate(buttonText);
                 return;
@@ -66,9 +72,10 @@ namespace Calculator
         }
         private void Calculate(string newOperator = null)
         {
+            bool isValid = true;
             double? result = null;
-            double? first = numbers[0] == null ? null : (double?)double.Parse(numbers[0]);
-            double? second = numbers[1] == null ? null : (double?)double.Parse(numbers[1]);
+            double? first = _numbers[0] == null ? null : (double?)double.Parse(_numbers[0]);
+            double? second = _numbers[1] == null ? null : (double?)double.Parse(_numbers[1]);
             switch (@operator)
             {
                 case "+":
@@ -78,30 +85,36 @@ namespace Calculator
                     result = first * second;
                     break;
                 case "/":
-                    result = first / second;
+                    if (second * 1 == 0) isValid = false;
+                    else result = first / second;
                     break;
                 case "-":
                     result = first - second;
                     break;
             }
-            if(result != null)
+            if (!isValid)
             {
-                numbers[0] = result.ToString().Trim();
-                @operator = newOperator;
-                numbers[1] = null;
-                UpdateCalculatorText();
+                _numbers[1] = "Wrong input!";
+                _numbers[0] = null;
             }
+            else if (result != null)
+            {
+                _numbers[1] = result.ToString().Trim();
+                _numbers[0] = null;
+            }
+            @operator = newOperator;
+            UpdateCalculatorText();
         }
         private void Clear()
         {
-            numbers[0] = "0";
-            numbers[1] = null;
+            _numbers[1] = null;
+            _numbers[0] = "0";
             @operator = null;
             UpdateCalculatorText();
         }
         private void UpdateCalculatorText()
         {
-            calcText.Text = $"{numbers[0]}{@operator}{numbers[1]}";
+            _calcText.Text = $"{_numbers[0]}{@operator}{_numbers[1]}";
         }
     }
 }
