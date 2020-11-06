@@ -40,11 +40,11 @@
 
 @addNum
 Scenario Outline: Add two numbers
-	Given the first number is <firstNumber>
+	When The <firstNumber> number typed at the calculator
 	When I select a sign like plus
-	When the second number is <secondNumber>
+	When The <secondNumber> number typed at the calculator
 	And I tap on equal button
-	Then the result should be <result>
+	Then I see the <result> of operation at the input field
 	Examples:
     | firstNumber | secondNumber | result	  |
     |    0		  |   0			 |   0		  |
@@ -59,11 +59,11 @@ Scenario Outline: Add two numbers
 
 @multiplyNum
 Scenario Outline: multiply two numbers
-	Given the first number is <firstNumber>
+	When The <firstNumber> number typed at the calculator
 	When I select a sign like multiply
-	When the second number is <secondNumber>
+	When The <secondNumber> number typed at the calculator
 	And I tap on equal button
-	Then the result should be <result>
+	Then I see the <result> of operation at the input field
 	Examples:
     | firstNumber | secondNumber | result     |
     | 0           | 0            | 0          |
@@ -71,9 +71,9 @@ Scenario Outline: multiply two numbers
     | 0           | 1            | 0          |
     | 5           | 1            | 5          |
     | 7           | 2            | 14         |
-    | 0.5         | 5	         | 2.5        |
+    | 0.5         | 5            | 2.5        |
     | 3           | 0.25         | 0.75       |
-    | 0.1000      | 1.99         | 0.0199     |
+    | 0.1000      | 1.99         | 0.199      |
     | 2.77777     | 10.33        | 28.6943641 |
 
 

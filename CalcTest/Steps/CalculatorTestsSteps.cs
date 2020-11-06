@@ -213,5 +213,11 @@ namespace CalcTest.Steps
 
             }
         }
+
+        [BeforeScenario]
+        public void BeforeEveryTestOpenApplication()
+        {
+            AppInit.StartApp();
+        }
     }
 }
