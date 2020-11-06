@@ -40,18 +40,17 @@
 
 @addNum
 Scenario Outline: Add two numbers
-	Given the first number is <firstNumber>
+	When The <firstNumber> number typed at the calculator
 	When I select a sign like plus
-	When the second number is <secondNumber>
+	When The <secondNumber> number typed at the calculator
 	And I tap on equal button
-	Then the result should be <result>
+	Then I see the <result> of operation at the input field
 	Examples:
     | firstNumber | secondNumber | result	  |
     |    0		  |   0			 |   0		  |
     |    1		  |   0			 |   1		  |
     |    0		  |   1			 |   1		  |
     |    9		  |   1			 |   10       |
-    |    50		  |   50		 |   100	  |
 	|    1000	  |   99000		 |   100000   |
 	|    1		  |   999999	 |   1000000  |
 	|    0.1	  |   0			 |   0.1	  |
@@ -59,22 +58,22 @@ Scenario Outline: Add two numbers
 	|    0.75	  |   0.25		 |   1		  |
 	|    0.333	  |   0.25		 |   0.583	  |
 	|    0.1000	  |   1.99		 |   2.09	  |
-	|    2.77777  |   10.33		 |   13,10777 |
+	|    2.77777  |   10.33		 |   13.10777 |
 	|    0.9	  |   0.1		 |   1		  |
 
 
 @multiplyNum
 Scenario Outline: multiply two numbers
-	Given the first number is <firstNumber>
+	When The <firstNumber> number typed at the calculator
 	When I select a sign like multiply
-	When the second number is <secondNumber>
+	When The <secondNumber> number typed at the calculator
 	And I tap on equal button
-	Then the result should be <result>
+	Then I see the <result> of operation at the input field
 	Examples:
     | firstNumber | secondNumber | result     |
     | 0           | 0            | 0          |
     | 1           | 0            | 0          |
-    | 0           | 1            | 0          |
+    | 0           | 2            | 0          |
     | 5           | 1            | 5          |
     | 7           | 2            | 14         |
     | 400         | 3            | 1200       |
@@ -83,7 +82,7 @@ Scenario Outline: multiply two numbers
     | 0.5         | 0.5          | 0.25       |
     | 0.75        | 0.25         | 0.1875     |
     | 0.333       | 0.25         | 0.08325    |
-    | 0.1000      | 1.99         | 0.0199     |
+    | 0.1000      | 1.99         | 0.199      |
     | 2.77777     | 10.33        | 28.6943641 |
     | 0.9         | 0.1          | 0.09       |
 
@@ -139,7 +138,56 @@ Scenario Outline: Zero as first operand after tap on operation button on initial
 	Then I see the <result> of operation at the input field
 	Examples: 
 	| operation | result |
-	| '+'         | 5      |
-	| '-'         | -5     |
-	| '*'         | 0      |
-	| '/'         | 0      |
+	| '+'       | 5      |
+	| '-'       | -5     |
+	| '*'       | 0      |
+	| '/'       | 0      |
+
+	@negative
+Scenario: Checking impossibility to write two dots intoone number
+	Given Fractional number typed into input field
+	When I tap one more separator sign .
+	Then Sign is not tapped
+	When I add 1 to the number
+	When I tap on equal button
+	Then The result is more by one
+
+
+Scenario: Ability to make multiply operations
+	Given Random number is typed to calculator
+	When I add 1 to the number
+	When I tap on equal button
+	Then I see is more by one than random
+	When I add 1 to the number
+	When I tap on equal button
+	Then I see is more by one than previous number
+
+	#После посчитать
+ #           Большие числа (попереумножать)
+
+Scenario Outline: Reaction on try of counting without second operand
+	Given Random number is typed to calculator
+	When I tap on <operation> button
+	When I tap on equal button
+	Then I see operand and <operation> number at input field
+	Examples: 
+	| operation |
+	| '+'       |
+	| '-'       |
+	| '*'       |
+	| '/'       |
+
+
+Scenario: Reaction on using of equel button without operands input
+	When I tap on equal button
+	Then The 0 number typed at the calculator input field
+
+
+Scenario: Ability to make unrelated operations
+	Given Random number is typed to calculator
+	When I add 1 to the number
+	When I tap on equal button
+	Then I see is more by one than random
+	When I tap on random number 
+	Then I see only random number at the calculator input 
+

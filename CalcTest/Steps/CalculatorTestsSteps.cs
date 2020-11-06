@@ -9,6 +9,7 @@ namespace CalcTest.Steps
     public class CalculatorTestsSteps
     {
         CalcView calc;
+        string operandForMultiply;
 
         [Given(@"calculator app is initialized")]
         public void GivenCalculatorAppIsInitialized()
@@ -20,12 +21,7 @@ namespace CalcTest.Steps
         [When(@"The (.*) number typed at the calculator")]
         public void WhenTheNumberTypedAtTheCalculator(double operand)
         {
-            string num = operand.ToString();
-            char[] number = num.ToCharArray();
-            foreach (var item in number)
-            {
-                calc.TapOnButton(item.ToString());
-            }
+            TapNumber(operand.ToString());
         }
 
         [When(@"I tap on substract button")]
@@ -101,46 +97,11 @@ namespace CalcTest.Steps
             Assert.AreEqual(expected, calc.CalcViewText);
         }
 
-        //add positive tests
-        [Given(@"the first number is (.*)")]
-        public void GivenTheFirstNumberIs(string operand)
-        {
-            if (operand.Length > 1)
-            {
-                char[] number = operand.ToCharArray();
-                foreach (var item in number)
-                {
-                    calc.TapOnButton(item.ToString());
-                }
-            }
-            else calc.TapOnButton(operand);
-        }
-
         [When(@"I select a sign like plus")]
         public void WhenISelectASignLikePlus()
         {
             calc.TapOnPlus();
-        }
-
-        [When(@"the second number is (.*)")]
-        public void WhenTheSecondNumberIs(string operand)
-        {
-            if (operand.Length > 1)
-            {
-                char[] number = operand.ToCharArray();
-                foreach (var item in number)
-                {
-                    calc.TapOnButton(item.ToString());
-                }
-            }
-            else calc.TapOnButton(operand);
-        }
-        
-        [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBe(string expectedResult)
-        {
-            Assert.AreEqual(expectedResult, calc.CalcViewText);
-        }
+        }       
 
         //multiply positive tests
 
@@ -148,6 +109,103 @@ namespace CalcTest.Steps
         public void WhenISelectASignLikeMultiply()
         {
             calc.TapOnProduct();
+        }
+
+        // Two dot signs
+        [Given(@"Fractional number typed into input field")]
+        public void GivenFractionalNumberTypedIntoInputField()
+        {
+            TapNumber("123.45");
+        }
+
+        [When(@"I tap one more separator sign (.*)")]
+        public void WhenITapOneMoreSeparatorSign(string p0)
+        {
+            calc.TapOnComma();
+        }
+
+        [Then(@"Sign is not tapped")]
+        public void ThenSignIsNotTapped()
+        {
+            Assert.AreEqual("123.45", calc.CalcViewText);
+        }
+
+        [When(@"I add (.*) to the number")]
+        public void WhenIAddToTheNumber(int p0)
+        {
+            calc.TapOnPlus().TapOnButton("1");
+        }
+
+        [Then(@"The result is more by one")]
+        public void ThenTheResultIsMoreByOne()
+        {
+            Assert.AreEqual("124.45", calc.CalcViewText);
+        }
+
+        // Multiply operations
+        [Given(@"Random number is typed to calculator")]
+        public void GivenRandomNumberIsTypedToCalculator()
+        {
+            Random rdm = new Random();
+            operandForMultiply = (rdm.Next(0, 21)+1).ToString();
+            TapNumber(operandForMultiply);
+        }
+
+        [Then(@"I see is more by one than random")]
+        public void ThenISeeIsMoreByOneThanRandom()
+        {
+            int.TryParse(operandForMultiply, out int expected);
+            expected += 1;
+            Assert.AreEqual(expected.ToString(), calc.CalcViewText);
+        }
+
+        [Then(@"I see is more by one than previous number")]
+        public void ThenISeeIsMoreByOneThanPreviousNumber()
+        {
+            int.TryParse(operandForMultiply, out int expected);
+            expected += 2;
+            Assert.AreEqual(expected.ToString(), calc.CalcViewText);
+        }        
+
+        // operator + sign + =
+        [Then(@"I see operand and '(.*)' number at input field")]
+        public void ThenISeeOperandAndNumberAtInputField(string sign)
+        {
+            string expected = operandForMultiply + sign;
+            Assert.AreEqual(expected, calc.CalcViewText);
+        }
+
+        // Tap on equel after start of project
+        [Then(@"The (.*) number typed at the calculator input field")]
+        public void ThenTheNumberTypedAtTheCalculatorInputField(int num)
+        {
+            Assert.AreEqual(num.ToString(), calc.CalcViewText);
+        }
+
+        // Unrelated multiply operations 
+        [When(@"I tap on random number")]
+        public void WhenITapOnRundomNumber()
+        {
+            Random rdm = new Random();
+            operandForMultiply = rdm.Next(0, 21).ToString();
+            TapNumber(operandForMultiply);
+        }
+
+        [Then(@"I see only random number at the calculator input")]
+        public void ThenISeeOnlyRandomNumberAtTheCalculatorInput()
+        {
+            Assert.AreEqual(operandForMultiply, calc.CalcViewText);
+        }
+
+
+        public void TapNumber(string operand)
+        {
+            char[] number = operand.ToCharArray();
+            foreach (var item in number)
+            {
+                calc.TapOnButton(item.ToString());
+
+            }
         }
     }
 }
