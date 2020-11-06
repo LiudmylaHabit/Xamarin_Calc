@@ -17,15 +17,16 @@ namespace Calculator
         private TextView _calcText;
         private string[] _numbers = new string[2];
         private string @operator;
+        private bool _isResult;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
             _calcText = FindViewById<TextView>(Resource.Id.input);
             _numbers[0] = "0";
+            _isResult = false;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -38,15 +39,23 @@ namespace Calculator
         public void ButtonClick(View view)
         {
             Button button = (Button)view;
-            if ("0123456789.".Contains(button.Text)) AddButtonValues(button.Text);
-            else if ("+-*/".Contains(button.Text)) AddOperator(button.Text);
+            if ("0123456789.".Contains(button.Text))
+            {
+                AddButtonValues(button.Text);
+                _isResult = false;
+            }
+            else if ("+-*/".Contains(button.Text))
+            {
+                AddOperator(button.Text);
+                _isResult = false;
+            }
             else if ("=" == button.Text) Calculate();
             else Clear();
         }
 
         private void AddButtonValues(string buttonText)
         {
-            if (_calcText.Text == "Wrong input!")
+            if (_calcText.Text == "Wrong input!" || _isResult)
             {
                 Clear();
             }
@@ -102,6 +111,7 @@ namespace Calculator
                 _numbers[0] = result.ToString().Trim();
                 _numbers[1] = null;
             }
+            _isResult = true;
             @operator = newOperator;
             UpdateCalculatorText();
         }
